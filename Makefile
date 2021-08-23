@@ -737,6 +737,7 @@ modules:
 	@echo CFLAGS = $(CFLAGS)
 	@echo EXTRA_CFLAGS = $(EXTRA_CFLAGS)
 	$(MAKE) -C $(KERNEL_SRC) M=$(M) MODULE_NAME=$(MODULE_NAME) PLATFORM_FLAGS="$(PLATFORM_FLAGS)" modules
+	$(CROSS_COMPILE)strip --strip-unneeded ${OUT_DIR}/$(M)/$(MODULE_NAME).ko
 
 modules_install:
 	@$(MAKE) INSTALL_MOD_STRIP=1 M=$(M) -C $(KERNEL_SRC) modules_install
