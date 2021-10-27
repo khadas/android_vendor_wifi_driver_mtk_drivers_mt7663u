@@ -6264,6 +6264,7 @@ u_int8_t kalMetCheckProfilingPacket(IN struct GLUE_INFO
 	return FALSE;
 }
 
+#if KERNEL_VERSION(4, 19, 0) > LINUX_VERSION_CODE
 static unsigned long __read_mostly tracing_mark_write_addr;
 
 static int __mt_find_tracing_mark_write_symbol_fn(
@@ -6276,11 +6277,13 @@ static int __mt_find_tracing_mark_write_symbol_fn(
 	}
 	return 0;
 }
-
+#endif
 static inline void __mt_update_tracing_mark_write_addr(void)
 {
+#if KERNEL_VERSION(4, 19, 0) > LINUX_VERSION_CODE
 	if (unlikely(tracing_mark_write_addr == 0))
 		kallsyms_on_each_symbol(__mt_find_tracing_mark_write_symbol_fn, NULL);
+#endif
 }
 
 void kalMetTagPacket(IN struct GLUE_INFO *prGlueInfo,

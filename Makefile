@@ -743,6 +743,7 @@ modules_install:
 	@$(MAKE) INSTALL_MOD_STRIP=1 M=$(M) -C $(KERNEL_SRC) modules_install
 	mkdir -p ${OUT_DIR}/../vendor_lib/modules
 	cd ${OUT_DIR}/$(M)/; find -name $(MODULE_NAME).ko -exec cp {} ${OUT_DIR}/../vendor_lib/modules/$(MODULE_NAME).ko \;
+	cd ${OUT_DIR}/$(M)/; find -name wlan_mt7663_usb_prealloc.ko -exec cp {} ${OUT_DIR}/../vendor_lib/modules/wlan_mt7663_usb_prealloc.ko \;
 
 
 
